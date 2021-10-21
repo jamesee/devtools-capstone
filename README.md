@@ -1,3 +1,95 @@
+# DevTools Homework Day 3
+
+![hw day3](docs/img/devtools-hw-day3.png)
+
+```yaml
+# .github/workflows/docker.yml
+
+name: CI to Docker Hub, SNYK & Heroku-Deploy
+
+on:
+  push:
+    branches: [master]
+
+env:
+  IMAGE_NAME: amongus-todo
+  TEST_TAG: ${{ secrets.DOCKER_HUB_USERNAME }}/amongus-todo:test
+  RELEASE_TAG: ${{ secrets.DOCKER_HUB_USERNAME }}/amongus-todo:lastest
+  EMAIL: james.ee.developer@gmail.com
+
+jobs:
+  docker-build-snyk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and export to Docker
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          load: true
+          tags: ${{ env.TEST_TAG }}
+
+      - name: Run Snyk to check Docker images for vulnerabilities
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: ${{ env.TEST_TAG }}
+          args: --severity-threshold=high
+          
+  docker-push:
+    needs: docker-build-snyk
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: linux/amd64
+          push: true
+          tags: ${{ env.RELEASE_TAG }}
+
+      - name: Image digest
+        run: |
+          echo ${{ steps.docker_build.outputs.digest }}
+
+  heroku-deploy:
+    needs: docker-build-snyk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: jamesee-${{ env.IMAGE_NAME }} #Must be unique in Heroku
+          heroku_email: ${{ env.EMAIL }}
+          usedocker: true
+```
+
 # Among Us TODOs API
 
 ![Among Us banner](docs/img/banner.jpg)

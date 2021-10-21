@@ -90,6 +90,11 @@ jobs:
           usedocker: true
 ```
 
+# Deployed to Heroku
+
+The URL to Heroku deployment : https://jamesee-amongus-todo.herokuapp.com/
+
+
 # Among Us TODOs API
 
 ![Among Us banner](docs/img/banner.jpg)

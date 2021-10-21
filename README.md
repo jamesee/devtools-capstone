@@ -5,8 +5,7 @@
 ```yaml
 # .github/workflows/docker.yml
 
-name: CI to Docker Hub, SNYK & Heroku-Deploy
-
+name: CI to Docker Hub
 on:
   push:
     branches: [master]
@@ -46,8 +45,9 @@ jobs:
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-          
+
   docker-build-snyk:
+    needs: [ npm-tests, snyk-scan ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

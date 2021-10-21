@@ -1,4 +1,4 @@
-name: ci
+name: Nodejs CI
 on: 
   push:
     branches: [master]
@@ -26,11 +26,11 @@ jobs:
         run: npm test
 
 
-  scan:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  # scan:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Run Snyk to check for vulnerabilities
+  #       uses: snyk/actions/node@master
+  #       env:
+  #         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

@@ -13,11 +13,9 @@ on:
 
 env:
   IMAGE_NAME: amongus-todo
-  TEST_TAG: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME}}:test
-  RELEASE_TAG: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME}}:lastest
-#   TEST_TAG: ${{ secrets.DOCKER_HUB_USERNAME }}/amongus-todo:test
-#   RELEASE_TAG: ${{ secrets.DOCKER_HUB_USERNAME }}/amongus-todo:lastest
   EMAIL: james.ee.developer@gmail.com
+  TEST_TAG: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:test
+  RELEASE_TAG: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:lastest
 
 jobs:
   docker-build-snyk:

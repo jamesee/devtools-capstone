@@ -1,13 +1,13 @@
 name: CI to Docker Hub
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 env:
   IMAGE_NAME: amongus-todo
   TEST_TAG: ${{ secrets.DOCKER_HUB_USERNAME }}/amongus-todo:test
   RELEASE_TAG: ${{ secrets.DOCKER_HUB_USERNAME }}/amongus-todo:lastest
-  EMAIL: james.ee.developer@gmail.com
+  # EMAIL: james.ee.developer@gmail.com
 
 jobs:
   npm-tests:

@@ -99,14 +99,47 @@ jobs:
         run: |
           echo ${{ steps.docker_build.outputs.digest }}
 
-  heroku-deploy:
-    needs: docker-build-snyk
+  ansible-playbook:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: jamesee-${{ env.IMAGE_NAME }} #Must be unique in Heroku
-          heroku_email: ${{ env.EMAIL }}
-          usedocker: true
+          # Required, playbook filepath
+          playbook: docker.yml
+          # Optional, directory where playbooks live
+          directory: ./ansible
+          # Optional, SSH private key
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          # Optional, literal inventory file contents
+          # inventory: |
+          #   [all]
+          #   example.com
+
+          #   [group1]
+          #   example.com
+          # Optional, SSH known hosts file content
+          # known_hosts: .known_hosts
+          # # Optional, encrypted vault password
+          # vault_password: ${{secrets.VAULT_PASSWORD}}
+          # # Optional, galaxy requirements filepath
+          # requirements: galaxy-requirements.yml
+          # # Optional, additional flags to pass to ansible-playbook
+          options: |
+            --inventory ./ansible/inventory
+            --verbose
+  # heroku-deploy:
+  #   needs: docker-build-snyk
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+  #       with:
+  #         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+  #         heroku_app_name: jamesee-${{ env.IMAGE_NAME }} #Must be unique in Heroku
+  #         heroku_email: ${{ env.EMAIL }}
+  #         usedocker: true
+

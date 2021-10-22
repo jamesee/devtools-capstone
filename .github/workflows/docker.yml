@@ -129,7 +129,7 @@ jobs:
           # requirements: galaxy-requirements.yml
           # # Optional, additional flags to pass to ansible-playbook
           options: |
-            --inventory ./ansible/inventory
+            --inventory inventory
             --verbose
   # heroku-deploy:
   #   needs: docker-build-snyk

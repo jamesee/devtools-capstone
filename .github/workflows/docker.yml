@@ -116,8 +116,11 @@ jobs:
           key: ${{secrets.SSH_PRIVATE_KEY}}
           # Optional, literal inventory file contents
           # inventory: |
-          #   [all]
-          #   example.com
+            [servers]
+            devtools-capstone ansible_host=54.179.184.232 ansible_ssh_private_key_file=${{secrets.SSH_PRIVATE_KEY}} ansible_ssh_user=ubuntu 
+
+            [servers:vars]
+            ansible_python_interpreter=/usr/bin/python3
 
           #   [group1]
           #   example.com
@@ -129,7 +132,6 @@ jobs:
           # requirements: galaxy-requirements.yml
           # # Optional, additional flags to pass to ansible-playbook
           options: |
-            --inventory inventory
             --verbose
   # heroku-deploy:
   #   needs: docker-build-snyk

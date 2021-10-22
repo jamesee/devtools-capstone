@@ -109,7 +109,7 @@ jobs:
         uses: dawidd6/action-ansible-playbook@v2
         with:
           # Required, playbook filepath
-          playbook: docker.yml
+          playbook: docker.yaml
           # Optional, directory where playbooks live
           directory: ./ansible
           # Optional, SSH private key

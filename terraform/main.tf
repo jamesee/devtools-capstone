@@ -8,7 +8,8 @@ resource "aws_security_group" "sg_22" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${local.myipv4}/32"]
+    cidr_blocks = ["0.0.0.0/0"]
+    # cidr_blocks = ["${local.myipv4}/32"]
     # cidr_blocks = ["${chomp(data.http.myipv4.body)}/32"]
   }
   egress {

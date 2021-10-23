@@ -21,13 +21,14 @@ chmod 700 "$SSHPATH"
 chmod 600 "$SSHPATH/known_hosts"
 chmod 600 "$SSHPATH/james-sutd-ec2.pem"
 
+ansible-playbook $1 -i $2
 
-if [ ! -z "$ANSIBLE_VAULT_PASSWORD" ]
-then
-      echo $ANSIBLE_VAULT_PASSWORD >> .vault;
-      ansible-playbook $1 -i $2 --vault-password-file .vault;
-      rm .vault
-else
-      ansible-playbook $1 -i $2
-fi
+# if [ ! -z "$ANSIBLE_VAULT_PASSWORD" ]
+# then
+#       echo $ANSIBLE_VAULT_PASSWORD >> .vault;
+#       ansible-playbook $1 -i $2 --vault-password-file .vault;
+#       rm .vault
+# else
+#       ansible-playbook $1 -i $2
+# fi
 

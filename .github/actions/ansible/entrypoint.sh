@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-SSHPATH="/github/workspace/.ssh"
+SSHPATH="/github/workspace/"
 
 if [ ! -d "$SSHPATH" ]
 then

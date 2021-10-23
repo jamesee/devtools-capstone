@@ -28,8 +28,7 @@ chmod 600 "$SSHPATH/james-sutd-ec2.pem"
 # cat $INPUT_INVENTORY
 # cat $INPUT_PLAYBOOK
 
-ls -al ~/.ssh
-
+sh -c "ansible-playbook $INPUT_PLAYBOOK -i 18.136.101.16 -u ubuntu"
 # sh -c "ansible-playbook $INPUT_PLAYBOOK -i $INPUT_INVENTORY"
 
 # if [ ! -z "$ANSIBLE_VAULT_PASSWORD" ]

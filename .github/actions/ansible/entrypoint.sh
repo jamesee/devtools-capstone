@@ -1,11 +1,8 @@
 #!/bin/bash
 
-pwd
 
-ls -al ~/
-
-echo $SSH_PRIVATE_KEY > ~/.ssh/james-sutd-ec2.pem
-chmod 400 ~/.ssh/james-sutd-ec2.pem
+echo $SSH_PRIVATE_KEY > james-sutd-ec2.pem
+chmod 400 james-sutd-ec2.pem
 
 if [ ! -z "$ANSIBLE_VAULT_PASSWORD" ]
 then

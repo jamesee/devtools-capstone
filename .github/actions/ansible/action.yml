@@ -1,6 +1,9 @@
 name: 'Ansible'
 description: 'Runs an Ansible playbook'
 inputs:
+  key:
+    description: "String that contains a private key for either key-based or hostbased user authentication (OpenSSH format)"
+    required: false
   playbook:
     description: 'Ansible playbook to run'
     required: true
@@ -13,5 +16,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.key }}
     - ${{ inputs.playbook }}
     - ${{ inputs.inventory }}

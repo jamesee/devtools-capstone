@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-SSHPATH="/github/workspace/"
+SSHPATH="/github/workspace/.ssh"
 
 if [ ! -d "$SSHPATH" ]
 then
@@ -16,12 +16,13 @@ fi
 echo "$INPUT_KEY" > "$SSHPATH/james-sutd-ec2.pem"
 KEYFILE="$SSHPATH/james-sutd-ec2.pem"
 
-ls -al /github/workspace/
-pwd
-
 chmod 700 "$SSHPATH"
 chmod 600 "$SSHPATH/known_hosts"
 chmod 400 "$SSHPATH/james-sutd-ec2.pem"
+chown 1001:121 "$SSHPATH/james-sutd-ec2.pem"
+
+ls -al /github/workspace/
+pwd
 
 # sh -c "ssh -i $KEYFILE -o StrictHostKeyChecking=no -p 22 ubuntu@18.136.101.16 "
 

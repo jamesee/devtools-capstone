@@ -16,12 +16,14 @@ fi
 echo "$INPUT_KEY" > "$SSHPATH/james-sutd-ec2.pem"
 KEYFILE="$SSHPATH/james-sutd-ec2.pem"
 
+ls -al ~/.ssh
+pwd
 
 chmod 700 "$SSHPATH"
 chmod 600 "$SSHPATH/known_hosts"
 chmod 600 "$SSHPATH/james-sutd-ec2.pem"
 
-ansible-playbook $1 -i $2
+ansible-playbook "$INPUT_PLAYBOOK" -i "$INTPUT_INVENTORY"
 
 # if [ ! -z "$ANSIBLE_VAULT_PASSWORD" ]
 # then

@@ -16,7 +16,7 @@ fi
 echo "$INPUT_KEY" > "$SSHPATH/james-sutd-ec2.pem"
 KEYFILE="$SSHPATH/james-sutd-ec2.pem"
 
-ls -al /github/workspace/.ssh
+ls -al /github/workspace/
 pwd
 
 chmod 700 "$SSHPATH"

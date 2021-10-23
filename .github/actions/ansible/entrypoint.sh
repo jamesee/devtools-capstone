@@ -21,8 +21,10 @@ chmod 600 "$SSHPATH/known_hosts"
 chmod 400 "$SSHPATH/james-sutd-ec2.pem"
 chown 1001:121 "$SSHPATH/james-sutd-ec2.pem"
 
-ls -al /github/workspace/.ssh
-pwd
+echo $HOME
+
+ls -al $HOME/.ssh
+
 
 # sh -c "ssh -i $KEYFILE -o StrictHostKeyChecking=no -p 22 ubuntu@18.136.101.16 "
 

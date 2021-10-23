@@ -25,7 +25,7 @@ jobs:
     - uses: actions/checkout@v1
     - uses: ./.github/actions/ansible
       env:
-            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       with: 
         playbook: ./ansible/docker.yml
         inventory: ./ansible/inventory

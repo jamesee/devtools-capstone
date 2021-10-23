@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ls -al ~/
+
 echo $SSH_PRIVATE_KEY > ~/.ssh/james-sutd-ec2.pem
 chmod 400 ~/.ssh/james-sutd-ec2.pem
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pwd
+
 ls -al ~/
 
 echo $SSH_PRIVATE_KEY > ~/.ssh/james-sutd-ec2.pem

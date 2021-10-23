@@ -25,8 +25,10 @@ chmod 600 "$SSHPATH/james-sutd-ec2.pem"
 
 # sh -c "ssh -i $KEYFILE -o StrictHostKeyChecking=no -p 22 ubuntu@18.136.101.16 "
 
-cat $INPUT_INVENTORY
-cat $INPUT_PLAYBOOK
+# cat $INPUT_INVENTORY
+# cat $INPUT_PLAYBOOK
+
+ls -al ~/.ssh
 
 # sh -c "ansible-playbook $INPUT_PLAYBOOK -i $INPUT_INVENTORY"
 

@@ -23,7 +23,9 @@ chmod 700 "$SSHPATH"
 chmod 600 "$SSHPATH/known_hosts"
 chmod 600 "$SSHPATH/james-sutd-ec2.pem"
 
-ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY"
+sh -c "ssh $INPUT_ARGS -i $KEYFILE -o StrictHostKeyChecking=no -p 22 ubuntu@18.136.101.16 < $HOME/shell.sh"
+
+# ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY"
 
 # if [ ! -z "$ANSIBLE_VAULT_PASSWORD" ]
 # then

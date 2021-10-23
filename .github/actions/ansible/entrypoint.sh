@@ -23,7 +23,7 @@ chmod 700 "$SSHPATH"
 chmod 600 "$SSHPATH/known_hosts"
 chmod 600 "$SSHPATH/james-sutd-ec2.pem"
 
-sh -c "ssh $INPUT_ARGS -i $KEYFILE -o StrictHostKeyChecking=no -p 22 ubuntu@18.136.101.16 < $HOME/shell.sh"
+sh -c "ssh -i $KEYFILE -o StrictHostKeyChecking=no -p 22 ubuntu@18.136.101.16 < $HOME/shell.sh"
 
 # ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY"
 

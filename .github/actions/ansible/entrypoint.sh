@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-SSHPATH="$HOME/.ssh"
+SSHPATH="/github/workspace/.ssh"
 
 if [ ! -d "$SSHPATH" ]
 then
@@ -16,7 +16,7 @@ fi
 echo "$INPUT_KEY" > "$SSHPATH/james-sutd-ec2.pem"
 KEYFILE="$SSHPATH/james-sutd-ec2.pem"
 
-ls -al ~/.ssh
+ls -al /github/workspace/.ssh
 pwd
 
 chmod 700 "$SSHPATH"

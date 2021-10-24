@@ -103,26 +103,27 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
+        terraform show -json
 
-    - name: Extract inventory content
-      uses: sergeysova/jq-action@v2
-      with:
-          cmd: |
-            source ./terraform/create-inventory.sh
-            cat ./ansible/inventory.ini
+    # - name: Extract inventory content
+    #   uses: sergeysova/jq-action@v2
+    #   with:
+    #       cmd: |
+    #         source ./terraform/create-inventory.sh
+    #         cat ./ansible/inventory.ini
 
-    - name: Upload inventory.ini 
-      uses: actions/upload-artifact@v2
-      with:
-        name: inventory.ini
-        path: ./ansible/inventory.ini
+    # - name: Upload inventory.ini 
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: inventory.ini
+    #     path: ./ansible/inventory.ini
 
-    - name: Download inventory.ini 
-      uses: actions/download-artifact@v2
-      with:
-        name: inventory.ini
+    # - name: Download inventory.ini 
+    #   uses: actions/download-artifact@v2
+    #   with:
+    #     name: inventory.ini
 
-    - shell: bash
-      run: |
-        cat ./ansible/inventory.ini
+    # - shell: bash
+    #   run: |
+    #     cat ./ansible/inventory.ini
 

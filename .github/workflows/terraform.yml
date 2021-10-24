@@ -108,13 +108,13 @@ jobs:
         source create-inventory.sh
         cat ./ansible/inventory.ini
 
-    - name: Upload math result for addition job 
+    - name: Upload inventory.ini 
       uses: actions/upload-artifact@v2
       with:
         name: inventory.ini
         path: ./ansible/inventory.ini
 
-    - name: Download math result from addition job
+    - name: Download inventory.ini 
       uses: actions/download-artifact@v2
       with:
         name: inventory.ini

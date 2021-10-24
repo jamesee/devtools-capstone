@@ -8,10 +8,10 @@ then
   mkdir "$SSHPATH"
 fi
 
-if [ ! -f "$SSHPATH/known_hosts" ]
-then
-  touch "$SSHPATH/known_hosts"
-fi
+# if [ ! -f "$SSHPATH/known_hosts" ]
+# then
+#   touch "$SSHPATH/known_hosts"
+# fi
 
 echo "$INPUT_KEY" > "$SSHPATH/james-sutd-ec2.pem"
 KEYFILE="$SSHPATH/james-sutd-ec2.pem"

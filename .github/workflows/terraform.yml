@@ -111,7 +111,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: terraform-outputs.json
-        path: ./ansible/inventory.ini
+        path: terraform-outputs.json
 
     # - name: Extract local_files content
     #   uses: sergeysova/jq-action@v2
@@ -135,7 +135,7 @@ jobs:
 
     - shell: bash
       run: |
-        cat ./ansible/inventory.ini
+        cat terraform-outputs.json
 
   # deployAnsible:
   #   needs: terraform

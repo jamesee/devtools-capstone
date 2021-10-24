@@ -113,7 +113,7 @@ jobs:
 
 
   deployAnsible:
-    # needs: build
+    needs: terraform
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1

@@ -105,8 +105,8 @@ jobs:
         terraform apply -auto-approve
         pwd
         terraform output instance_public_ip
-        cat inventory.ini
-#        terraform show -json > /github/workspace/terraform/terraform-outputs.json
+        terraform show -json > terraform-outputs.json
+        ls -al
 #        cat terraform-outputs.json
 
     # - name: Upload terraform-outputs.json
@@ -130,14 +130,14 @@ jobs:
     #     name: inventory.ini
     #     path: ./ansible/inventory.ini
 
-    - name: Download inventory.ini 
-      uses: actions/download-artifact@v2
-      with:
-        name: terraform-outputs.json
+    # - name: Download inventory.ini 
+    #   uses: actions/download-artifact@v2
+    #   with:
+    #     name: terraform-outputs.json
 
-    - shell: bash
-      run: |
-        cat terraform-outputs.json
+    # - shell: bash
+    #   run: |
+    #     cat terraform-outputs.json
 
   # deployAnsible:
   #   needs: terraform

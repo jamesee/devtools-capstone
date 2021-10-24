@@ -34,7 +34,7 @@ ls -al $HOME/.ssh
 cat $INPUT_INVENTORY
 cat $INPUT_PLAYBOOK
 
-ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY"
+ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY" --config ./ansible/ansible.cfg
 
 # if [ ! -z "$ANSIBLE_VAULT_PASSWORD" ]
 # then

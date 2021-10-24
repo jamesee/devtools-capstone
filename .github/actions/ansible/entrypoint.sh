@@ -20,8 +20,8 @@ chmod 700 "$SSHPATH"
 chmod 600 "$SSHPATH/known_hosts"
 chmod 400 "$SSHPATH/james-sutd-ec2.pem"
 
-chown 1001:121 "$SSHPATH/known_hosts"
-chown 1001:121 "$SSHPATH/james-sutd-ec2.pem"
+# chown 1001:121 "$SSHPATH/known_hosts"
+# chown 1001:121 "$SSHPATH/james-sutd-ec2.pem"
 
 
 # echo $HOME

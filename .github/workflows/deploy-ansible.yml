@@ -29,4 +29,4 @@ jobs:
       with: 
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         playbook: ./ansible/docker.yml
-        inventory: ./ansible/inventory
+        inventory: ./ansible/inventory.ini

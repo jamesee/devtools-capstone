@@ -1,3 +1,4 @@
+#!/bin/bash
 
 OUTPUT=`terraform show -json | jq ".values .root_module .resources | last .values .content"`
 

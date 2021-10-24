@@ -103,7 +103,8 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
-        terraform show -json
+        cat ../ansible/inventory.ini
+    #    terraform show -json
 
     # - name: Extract inventory content
     #   uses: sergeysova/jq-action@v2

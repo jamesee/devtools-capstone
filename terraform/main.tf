@@ -34,20 +34,20 @@ resource "aws_instance" "devtoolsCapstone" {
   key_name = "james-sutd-ec2"
   vpc_security_group_ids = ["${aws_security_group.sg_22.id}"]
 
-  provisioner "remote-exec" {
-    inline = [
-      "echo 'Wait until SSH is ready'",
-      # "sudo apt update",
-      # "sudo apt upgrade -y"
-    ]
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "echo 'Wait until SSH is ready'",
+  #     # "sudo apt update",
+  #     # "sudo apt upgrade -y"
+  #   ]
 
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = "${file(var.ssh_key_path)}"
-      host        = aws_instance.devtoolsCapstone.public_ip
-    }
-  }
+  #   connection {
+  #     type        = "ssh"
+  #     user        = "ubuntu"
+  #     private_key = "${file(var.ssh_key_path)}"
+  #     host        = aws_instance.devtoolsCapstone.public_ip
+  #   }
+  # }
 
   # provisioner "local-exec" {
   #   command = "ansible-playbook -i '${aws_instance.devtoolsCapstone.public_ip},' --private-key '${var.ssh_key_path}' docker.yaml"

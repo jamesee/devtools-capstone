@@ -103,7 +103,7 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
-        terraform show -json | tee terraform/terraform-outputs.json
+        terraform show -json | tee terraform-outputs.json
         cat terraform-outputs.json
 
     - name: Extract version from package.json

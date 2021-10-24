@@ -103,10 +103,12 @@ jobs:
         cd terraform
         terraform apply -auto-approve
 
-    - shell: bash
-      run: |
-        source ./terraform/create-inventory.sh
-        cat ./ansible/inventory.ini
+    - name: Extract inventory content
+      uses: sergeysova/jq-action@v2
+      with:
+          cmd: |
+            source ./terraform/create-inventory.sh
+            cat ./ansible/inventory.ini
 
     - name: Upload inventory.ini 
       uses: actions/upload-artifact@v2

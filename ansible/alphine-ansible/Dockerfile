@@ -5,7 +5,7 @@ ENV ANSIBLE_LINT_VERSION=4.2.0
 
 RUN apk update \
   && apk add --no-cache --progress python3 openssl \
-  ca-certificates git openssh sshpass \
+  ca-certificates git openssh sshpass jq \
   && apk --update add --virtual build-dependencies \
   python3-dev libffi-dev openssl-dev build-base bash \
   && rm -rf /var/cache/apk/* 

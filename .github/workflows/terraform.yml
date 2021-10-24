@@ -103,8 +103,16 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
-        bash create-inventory.sh
-        cat ../ansible/inventory.ini
+        terraform show -json | tee terraform/terraform-outputs.json
+        cat terraform-outputs.json
+
+    - name: Extract version from package.json
+      uses: sergeysova/jq-action@v2
+      id: version
+      with:
+        cmd: |
+          bash create-inventory.sh
+          cat ../ansible/inventory.ini
 
     - name: Upload inventory.ini 
       uses: actions/upload-artifact@v2

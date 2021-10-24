@@ -15,6 +15,5 @@ RUN pip3 install --upgrade pip \
   && pip3 install ansible-lint==${ANSIBLE_LINT_VERSION}
 
 COPY ./entrypoint.sh /entrypoint.sh
-COPY ./james-sutd-ec2.pem /ansible/.ssh/james-sutd-ec2.pem
 
 ENTRYPOINT ["bash","/entrypoint.sh"]

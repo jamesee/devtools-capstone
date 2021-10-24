@@ -107,6 +107,7 @@ jobs:
         terraform output instance_public_ip
         terraform show -json > terraform-outputs.json
         ls -al
+        ls -al ../ansible
 #        cat terraform-outputs.json
 
     # - name: Upload terraform-outputs.json

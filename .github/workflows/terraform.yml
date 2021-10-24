@@ -103,42 +103,57 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
+        terraform output instance_public_ip
         terraform show -json | tee terraform-outputs.json
 #        cat terraform-outputs.json
 
-    - name: Extract local_files content
-      uses: sergeysova/jq-action@v2
-      id: version
-      with:
-        cmd: |
-          cat terraform-outputs.json
-          # bash create-inventory.sh
-          # cat ../ansible/inventory.ini
-
-    - name: Upload inventory.ini 
+    - name: Upload terraform-outputs.json
       uses: actions/upload-artifact@v2
       with:
-        name: inventory.ini
+        name: terraform-outputs.json
         path: ./ansible/inventory.ini
 
+    # - name: Extract local_files content
+    #   uses: sergeysova/jq-action@v2
+    #   id: version
+    #   with:
+    #     cmd: |
+    #       cat terraform-outputs.json
+    #       # bash create-inventory.sh
+    #       # cat ../ansible/inventory.ini
 
-  deployAnsible:
-    needs: terraform
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
+    # - name: Upload inventory.ini 
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: inventory.ini
+    #     path: ./ansible/inventory.ini
 
     - name: Download inventory.ini 
       uses: actions/download-artifact@v2
       with:
-        name: inventory.ini
+        name: terraform-outputs.json
 
     - shell: bash
       run: |
         cat ./ansible/inventory.ini
 
-    - uses: ./.github/actions/ansible
-      with: 
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        playbook: ./ansible/docker.yml
-        inventory: ./ansible/inventory.ini
+  # deployAnsible:
+  #   needs: terraform
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v1
+
+  #   - name: Download inventory.ini 
+  #     uses: actions/download-artifact@v2
+  #     with:
+  #       name: inventory.ini
+
+  #   - shell: bash
+  #     run: |
+  #       cat ./ansible/inventory.ini
+
+  #   - uses: ./.github/actions/ansible
+  #     with: 
+  #       key: ${{ secrets.SSH_PRIVATE_KEY }}
+  #       playbook: ./ansible/docker.yml
+  #       inventory: ./ansible/inventory.ini

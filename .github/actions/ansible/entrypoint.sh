@@ -20,19 +20,10 @@ chmod 700 "$SSHPATH"
 chmod 600 "$SSHPATH/known_hosts"
 chmod 400 "$SSHPATH/james-sutd-ec2.pem"
 
-# chown 1001:121 "$SSHPATH/known_hosts"
-# chown 1001:121 "$SSHPATH/james-sutd-ec2.pem"
-
-
-# echo $HOME
-# echo $KEYFILE
-# ls -al $HOME/.ssh
-
 
 # sh -c "ssh -i $KEYFILE -o StrictHostKeyChecking=no -p 22 ubuntu@18.136.101.16 "
 
-# cat $INPUT_INVENTORY
-# cat $INPUT_PLAYBOOK
+cp ./ansible/ansible.cfg .
 
 ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY"
 

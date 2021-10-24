@@ -103,15 +103,17 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
+        pwd
         terraform output instance_public_ip
-        terraform show -json > /github/workspace/terraform/terraform-outputs.json
+        cat inventory.ini
+#        terraform show -json > /github/workspace/terraform/terraform-outputs.json
 #        cat terraform-outputs.json
 
-    - name: Upload terraform-outputs.json
-      uses: actions/upload-artifact@v2
-      with:
-        name: terraform-outputs.json
-        path: /github/workspace/terraform/terraform-outputs.json
+    # - name: Upload terraform-outputs.json
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: terraform-outputs.json
+    #     path: /github/workspace/terraform/terraform-outputs.json
 
     # - name: Extract local_files content
     #   uses: sergeysova/jq-action@v2

@@ -29,12 +29,12 @@ echo $KEYFILE
 ls -al $HOME/.ssh
 
 
-sh -c "ssh -i $KEYFILE -o StrictHostKeyChecking=no -p 22 ubuntu@18.136.101.16 "
+# sh -c "ssh -i $KEYFILE -o StrictHostKeyChecking=no -p 22 ubuntu@18.136.101.16 "
 
 cat $INPUT_INVENTORY
 cat $INPUT_PLAYBOOK
 
-# ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY"
+ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY"
 
 # if [ ! -z "$ANSIBLE_VAULT_PASSWORD" ]
 # then

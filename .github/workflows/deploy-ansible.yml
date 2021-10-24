@@ -2,11 +2,11 @@ name: Deploy Ansible
 
 on:
   push:
-    branches:
-    - main
-  pull_request:
-    branches:
-    - main
+    paths:
+      - ansible/**
+  # pull_request:
+  #   branches:
+  #   - main
 
 jobs:
   # build:

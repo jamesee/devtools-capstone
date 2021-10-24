@@ -1,6 +1,5 @@
 terraform {
-  # required_version = "= 1.0.5"
-  required_version = "~> 0.15"
+  required_version = "= 1.1.0"
 
   backend "remote" {
     organization = "james-sutd"

@@ -105,18 +105,18 @@ jobs:
         terraform apply -auto-approve
         cat ../ansible/inventory.ini
 
-    # - name: Extract inventory content
-    #   uses: sergeysova/jq-action@v2
-    #   with:
-    #       cmd: |
-    #         source ./terraform/create-inventory.sh
-    #         cat ./ansible/inventory.ini
-
     - name: Upload inventory.ini 
       uses: actions/upload-artifact@v2
       with:
         name: inventory.ini
         path: ./ansible/inventory.ini
+
+
+  deployAnsible:
+    # needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
 
     - name: Download inventory.ini 
       uses: actions/download-artifact@v2
@@ -127,3 +127,8 @@ jobs:
       run: |
         cat ./ansible/inventory.ini
 
+    - uses: ./.github/actions/ansible
+      with: 
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        playbook: ./ansible/docker.yml
+        inventory: ./ansible/inventory.ini

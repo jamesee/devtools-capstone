@@ -103,11 +103,8 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
-        ./create-inventory.sh
-        cat inventory.ini
-        cp inventory.ini ../ansible/inventory.ini
-        ls -al
-        ls -al ../ansible
+        cat create-inventory.sh
+
 
     # - name: Upload terraform-outputs.json
     #   uses: actions/upload-artifact@v2

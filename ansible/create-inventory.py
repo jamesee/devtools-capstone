@@ -11,7 +11,7 @@ with open('./ansible/terraform-outputs.json') as f:
   data = json.load(f)
 
 # print(data["values"]["outputs"]["ansible_inventory_file"]["value"]["content"])
-print(data["content"])
+print(data)
 
 
 # inventory = data["values"]["outputs"]["ansible_inventory_file"]["value"]["content"]

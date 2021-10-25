@@ -8,6 +8,16 @@ output "instance_id" {
   value       = aws_instance.devtoolsCapstone.id
 }
 
+output "server_name" {
+  description = "ID of the EC2 instance"
+  value       = var.host_label
+}
+
+output "key_name" {
+  description = "ID of the EC2 instance"
+  value       = var.ssh_key_path
+}
+
 ### The Ansible inventory file
 resource "local_file" "AnsibleInventory" {
  content = templatefile("inventory.tmpl",

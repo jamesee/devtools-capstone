@@ -106,17 +106,17 @@ jobs:
         pwd
         terraform output instance_public_ip
         terraform show -json > terraform-outputs.json
-        cp terraform-outputs.json /tmp/terraform-outputs.json
+        bash create-inventory.sh
+        cat inventory.ini
+        cp inventory.ini /tmp/inventory.ini
         ls -al
-        ls -al ../ansible
         ls -al /tmp
-#        cat terraform-outputs.json
 
     - name: Upload terraform-outputs.json
       uses: actions/upload-artifact@v2
       with:
-        name: terraform-outputs.json
-        path: /tmp/terraform-outputs.json
+        name: inventory.ini
+        path: /tmp/inventory.ini
 
     # - name: Extract local_files content
     #   uses: sergeysova/jq-action@v2

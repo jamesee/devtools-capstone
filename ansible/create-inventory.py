@@ -1,3 +1,4 @@
+#!/usr/local/bin/python3
 import json
 
 with open('./ansible/terraform-outputs.json') as f:

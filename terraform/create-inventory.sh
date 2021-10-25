@@ -1,7 +1,11 @@
 #!/bin/sh
 
-# OUTPUT=`terraform show -json | jq ".values .root_module .resources | last .values .content"` 
-OUTPUT=`cat ansible/terraform-outputs.json | jq ".values .root_module .resources | last .values .content"`
+ if [ $1 -eq "local" ]
+then
+    OUTPUT=`terraform show -json | jq ".values .root_module .resources | last .values .content"` 
+else
+    OUTPUT=`cat ansible/terraform-outputs.json | jq ".values .root_module .resources | last .values .content"`
+fi
 
 FINAL=`sed -e 's/^"//' -e 's/"$//' <<< "$OUTPUT"`
 

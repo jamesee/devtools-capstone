@@ -104,33 +104,6 @@ jobs:
         cd terraform
         terraform apply -auto-approve
         terraform show -json | tee ../ansible/terraform-outputs.json
-#        cp terraform-outputs.json ../ansible/terraform-outputs.json
-
-    # - name: Upload terraform-outputs.json
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: inventory.ini
-    #     path: /tmp/inventory.ini
-
-    # - name: Extract local_files content
-    #   uses: sergeysova/jq-action@v2
-    #   id: version
-    #   with:
-    #     cmd: |
-    #       cat terraform-outputs.json
-    #       # bash create-inventory.sh
-    #       # cat ../ansible/inventory.ini
-
-    # - name: Upload inventory.ini 
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: inventory.ini
-    #     path: ./ansible/inventory.ini
-
-    # - name: Download inventory.ini 
-    #   uses: actions/download-artifact@v2
-    #   with:
-    #     name: terraform-outputs.json
 
     - shell: bash
       run: |

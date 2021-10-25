@@ -26,7 +26,7 @@ chmod 400 "$SSHPATH/james-sutd-ec2.pem"
 
 cp ./ansible/ansible.cfg .
 
-# python3 ./ansible/create-inventory.py
+python3 ./ansible/create-inventory.py
 cat ./ansible/inventory.ini 
 
 ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY"

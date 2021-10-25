@@ -148,7 +148,7 @@ jobs:
     needs: terraform
     runs-on: ubuntu-latest
     steps:
-    # - uses: actions/checkout@v1
+    - uses: actions/checkout@v1
 
     # - name: Download inventory.ini 
     #   uses: actions/download-artifact@v2

@@ -3,7 +3,7 @@
 import json
 
 with open('./ansible/test.json') as f:
-  data_test = json.load(f)
+  data_test = json.loads(f)
 
 print(data_test)
 

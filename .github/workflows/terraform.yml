@@ -103,10 +103,9 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
-        pwd
-        terraform output instance_public_ip
-        terraform show -json > terraform-outputs.json
-        bash create-inventory.sh
+#       terraform output instance_public_ip
+#       terraform show -json > terraform-outputs.json
+        ./create-inventory.sh
         cat inventory.ini
         cp inventory.ini /tmp/inventory.ini
         ls -al

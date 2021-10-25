@@ -26,7 +26,7 @@ chmod 400 "$SSHPATH/james-sutd-ec2.pem"
 
 cp ./ansible/ansible.cfg .
 
-bash ./terraform/create-inventory.sh
+# bash ./terraform/create-inventory.sh
 
 cat ./ansible/inventory.ini
 

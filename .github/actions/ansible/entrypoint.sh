@@ -26,9 +26,9 @@ chmod 400 "$SSHPATH/james-sutd-ec2.pem"
 
 cp ./ansible/ansible.cfg .
 
-jq --verison
+echo '{"foo": 0}' | jq .
 
-sed --verison
+# sed --verison
 
 # bash ./terraform/create-inventory.sh
 # cat ./ansible/terraform-outputs.json 

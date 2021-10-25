@@ -5,4 +5,4 @@ OUTPUT=`cat terraform/terraform-output.json | jq ".values .root_module .resource
 
 FINAL=`sed -e 's/^"//' -e 's/"$//' <<< "$OUTPUT"`
 
-echo -e "$FINAL" | tee ../ansible/inventory.ini 
+echo -e "$FINAL" | tee ./ansible/inventory.ini 

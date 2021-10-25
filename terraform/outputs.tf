@@ -19,7 +19,7 @@ output "key_name" {
 }
 
 ### The Ansible inventory file
-resource "local_file" "AnsibleInventory" {
+resource "local_file" "ansible_inventory_file" {
  content = templatefile("inventory.tmpl",
  {
   server_name = "${var.host_label}"
@@ -29,4 +29,10 @@ resource "local_file" "AnsibleInventory" {
  }
  )
  filename = "inventory.ini"
+}
+
+output "ansible_inventory_file" {
+  description = "Ansbile Inventory File"
+  value       = local_file.ansible_inventory_file
+  sensitive = true
 }

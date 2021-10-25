@@ -103,8 +103,8 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
-        terraform show -json | tee terraform-outputs.json
-        cp terraform-outputs.json ../ansible/terraform-outputs.json
+        terraform show -json | tee ../ansible/terraform-outputs.json
+#        cp terraform-outputs.json ../ansible/terraform-outputs.json
 
     # - name: Upload terraform-outputs.json
     #   uses: actions/upload-artifact@v2
@@ -134,29 +134,8 @@ jobs:
 
     - shell: bash
       run: |
-        pwd
-        ls -al ansible/
         cat ansible/inventory.ini
         
-
-  # deployAnsible:
-  #   needs: terraform
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v1
-
-    # - name: Download inventory.ini 
-    #   uses: actions/download-artifact@v2
-    #   with:
-    #     name: terraform-outputs.json
-
-    # - shell: bash
-    #   run: |
-    #     pwd
-    #     ls -al
-    #     ls -al ansible/
-#        cat terraform-outputs.json
-
     - uses: ./.github/actions/ansible
       with: 
         key: ${{ secrets.SSH_PRIVATE_KEY }}

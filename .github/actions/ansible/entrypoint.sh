@@ -26,15 +26,15 @@ ls -al ansible/
 
 cp ./ansible/ansible.cfg .
 
-ls -al 
-ls -al terraform/
+# ls -al 
+# ls -al terraform/
 
-cd terraform
-./create-inventory.sh
-cd ..
+# cd terraform
+# ./create-inventory.sh
+# cd ..
 
-ls -al 
-ls -al ansible/
+# ls -al 
+# ls -al ansible/
 
 ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY"
 

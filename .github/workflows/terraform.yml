@@ -105,17 +105,17 @@ jobs:
         terraform apply -auto-approve
         pwd
         terraform output instance_public_ip
-        terraform show -json > /tmp/terraform-outputs.json
+        terraform show -json > ../ansible/terraform-outputs.json
         ls -al
         ls -al ../ansible
         ls -al /tmp
 #        cat terraform-outputs.json
 
-    - name: Upload terraform-outputs.json
-      uses: actions/upload-artifact@v2
-      with:
-        name: terraform-outputs.json
-        path: /tmp/terraform-outputs.json
+    # - name: Upload terraform-outputs.json
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: terraform-outputs.json
+    #     path: ../ansible/terraform-outputs.json
 
     # - name: Extract local_files content
     #   uses: sergeysova/jq-action@v2
@@ -132,16 +132,16 @@ jobs:
     #     name: inventory.ini
     #     path: ./ansible/inventory.ini
 
-    - name: Download inventory.ini 
-      uses: actions/download-artifact@v2
-      with:
-        name: terraform-outputs.json
+    # - name: Download inventory.ini 
+    #   uses: actions/download-artifact@v2
+    #   with:
+    #     name: terraform-outputs.json
 
     - shell: bash
       run: |
         pwd
-        ls -al
-        cat terraform-outputs.json
+        ls -al ansible/
+        cat ansible/terraform-outputs.json
 
   # deployAnsible:
   #   needs: terraform

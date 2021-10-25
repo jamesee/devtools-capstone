@@ -111,11 +111,11 @@ jobs:
         ls -al /tmp
 #        cat terraform-outputs.json
 
-    # - name: Upload terraform-outputs.json
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: terraform-outputs.json
-    #     path: ../ansible/terraform-outputs.json
+    - name: Upload terraform-outputs.json
+      uses: actions/upload-artifact@v2
+      with:
+        name: terraform-outputs.json
+        path: ../ansible/terraform-outputs.json
 
     # - name: Extract local_files content
     #   uses: sergeysova/jq-action@v2
@@ -143,20 +143,23 @@ jobs:
         ls -al ansible/
         cat ansible/terraform-outputs.json
 
-  # deployAnsible:
-  #   needs: terraform
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v1
+  deployAnsible:
+    needs: terraform
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
 
-  #   - name: Download inventory.ini 
-  #     uses: actions/download-artifact@v2
-  #     with:
-  #       name: inventory.ini
+    - name: Download inventory.ini 
+      uses: actions/download-artifact@v2
+      with:
+        name: terraform-outputs.json
 
-  #   - shell: bash
-  #     run: |
-  #       cat ./ansible/inventory.ini
+    - shell: bash
+      run: |
+        pwd
+        ls -al
+        ls -al ansible/
+        cat ./ansible/terraform-outputs.json
 
   #   - uses: ./.github/actions/ansible
   #     with: 

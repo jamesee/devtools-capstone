@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+set -eu
 
 PUBLIC_IP_TEMP=`terraform output instance_public_ip`
 PUBLIC_IP=`sed -e 's/^"//' -e 's/"$//' <<< "$PUBLIC_IP_TEMP"`

@@ -31,8 +31,8 @@ cat ./ansible/test.json | jq .
 # sed --verison
 
 # bash ./terraform/create-inventory.sh
-cat ./ansible/terraform-outputs.json
-jq '.values' < (cat ./ansible/terraform-outputs.json)
+# cat ./ansible/terraform-outputs.json
+jq '.values' < $(cat ./ansible/terraform-outputs.json)
 
 # cat ./ansible/terraform-outputs.json | jq ".values "
 # OUTPUT=`cat ./ansible/terraform-outputs.json | jq ".values .root_module .resources | last .values .content"`

@@ -26,7 +26,7 @@ chmod 400 "$SSHPATH/james-sutd-ec2.pem"
 
 cp ./ansible/ansible.cfg .
 
-echo '{"foo": 0}' | jq .
+cat ./ansible/test.json | jq .
 
 # sed --verison
 

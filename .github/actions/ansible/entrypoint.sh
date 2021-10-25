@@ -28,6 +28,8 @@ cp ./ansible/ansible.cfg .
 
 bash ./terraform/create-inventory.sh
 
+cat ./ansible/inventory.ini
+
 ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY"
 
 # if [ ! -z "$ANSIBLE_VAULT_PASSWORD" ]

@@ -105,15 +105,15 @@ jobs:
         terraform apply -auto-approve
         ./create-inventory.sh
         cat inventory.ini
-        cp inventory.ini /tmp/inventory.ini
+        cp inventory.ini ../ansible/inventory.ini
         ls -al
-        ls -al /tmp
+        ls -al ../ansible
 
-    - name: Upload terraform-outputs.json
-      uses: actions/upload-artifact@v2
-      with:
-        name: inventory.ini
-        path: /tmp/inventory.ini
+    # - name: Upload terraform-outputs.json
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: inventory.ini
+    #     path: /tmp/inventory.ini
 
     # - name: Extract local_files content
     #   uses: sergeysova/jq-action@v2
@@ -139,7 +139,7 @@ jobs:
       run: |
         pwd
         ls -al ansible/
-        cat terraform/terraform-outputs.json
+        cat terraform/inventory.ini
 
   # deployAnsible:
   #   needs: terraform

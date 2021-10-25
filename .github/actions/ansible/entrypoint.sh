@@ -30,7 +30,7 @@ ls -al
 ls -al terraform/
 
 cd terraform
-source create-inventory.sh
+./create-inventory.sh
 cd ..
 
 ls -al 

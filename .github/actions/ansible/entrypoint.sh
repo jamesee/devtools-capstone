@@ -27,7 +27,7 @@ chmod 400 "$SSHPATH/james-sutd-ec2.pem"
 cp ./ansible/ansible.cfg .
 
 # bash ./terraform/create-inventory.sh
-cat ./ansible/terraform-outputs.json | jq ".values .root_module .resources | last .values .content"
+cat ./ansible/terraform-outputs.json | jq ".values "
 # OUTPUT=`cat ./ansible/terraform-outputs.json | jq ".values .root_module .resources | last .values .content"`
 # FINAL=`sed -e 's/^"//' -e 's/"$//' <<< "$OUTPUT"`
 # echo -e "$FINAL"

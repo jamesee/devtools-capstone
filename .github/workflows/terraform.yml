@@ -103,8 +103,12 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
-        cat create-inventory.sh
-
+        export PUBLIC_IP=`terraform output instance_public_ip`
+        export SERVER_NAME=`terraform output server_name`
+        export KEY_NAME=`terraform output key_name`
+        echo -e "[servers]" > inventory.ini 
+        echo -e "$SERVER_NAME ansible_host=$PUBLIC_IP ansible_ssh_private_key_file=$KEY_NAME ansible_ssh_user=ubuntu" >> inventory.ini
+        cat inventory.ini
 
     # - name: Upload terraform-outputs.json
     #   uses: actions/upload-artifact@v2

@@ -106,6 +106,7 @@ jobs:
         pwd
         terraform output instance_public_ip
         terraform show -json > ../ansible/terraform-outputs.json
+        cp ../ansible/terraform-outputs.json /tmp/terraform-outputs.json
         ls -al
         ls -al ../ansible
         ls -al /tmp
@@ -115,7 +116,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: terraform-outputs.json
-        path: ../ansible/terraform-outputs.json
+        path: /tmp/terraform-outputs.json
 
     # - name: Extract local_files content
     #   uses: sergeysova/jq-action@v2
@@ -159,7 +160,7 @@ jobs:
         pwd
         ls -al
         ls -al ansible/
-        cat ./ansible/terraform-outputs.json
+        cat terraform-outputs.json
 
   #   - uses: ./.github/actions/ansible
   #     with: 

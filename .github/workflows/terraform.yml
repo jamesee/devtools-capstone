@@ -148,19 +148,19 @@ jobs:
     needs: terraform
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    # - uses: actions/checkout@v1
 
-    - name: Download inventory.ini 
-      uses: actions/download-artifact@v2
-      with:
-        name: terraform-outputs.json
+    # - name: Download inventory.ini 
+    #   uses: actions/download-artifact@v2
+    #   with:
+    #     name: terraform-outputs.json
 
     - shell: bash
       run: |
         pwd
         ls -al
         ls -al ansible/
-        cat terraform-outputs.json
+#        cat terraform-outputs.json
 
   #   - uses: ./.github/actions/ansible
   #     with: 

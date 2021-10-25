@@ -31,6 +31,7 @@ echo '{"foo": 0}' | jq .
 # sed --verison
 
 # bash ./terraform/create-inventory.sh
+cat ./ansible/terraform-outputs.json
 cat ./ansible/terraform-outputs.json | jq .
 
 # cat ./ansible/terraform-outputs.json | jq ".values "

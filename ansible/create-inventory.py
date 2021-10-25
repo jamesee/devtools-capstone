@@ -8,7 +8,7 @@ with open('./ansible/test.json') as f:
 print(data_test)
 
 with open('./ansible/terraform-outputs.json') as f:
-  data = json.load(f)
+  data = json.loads(f)
 
 # print(data["values"]["outputs"]["ansible_inventory_file"]["value"]["content"])
 print(data["content"])

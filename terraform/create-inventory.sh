@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 set -eu
 
 PUBLIC_IP_TEMP=`terraform output instance_public_ip`

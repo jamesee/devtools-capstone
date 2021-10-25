@@ -25,6 +25,7 @@ ls -al ansible/
 # sh -c "ssh -i $KEYFILE -o StrictHostKeyChecking=no -p 22 ubuntu@18.136.101.16 "
 
 cp ./ansible/ansible.cfg .
+cd terraform && bash create-inventory.sh && cd ..
 
 ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY"
 

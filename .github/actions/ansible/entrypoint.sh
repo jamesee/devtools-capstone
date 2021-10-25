@@ -26,7 +26,12 @@ ls -al ansible/
 
 cp ./ansible/ansible.cfg .
 
-source terraform/create-inventory.sh
+ls -al 
+ls -al terraform/
+
+cd terraform
+source create-inventory.sh
+cd ..
 
 ls -al 
 ls -al ansible/

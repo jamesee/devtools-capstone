@@ -105,8 +105,8 @@ jobs:
         terraform apply -auto-approve
         pwd
         terraform output instance_public_ip
-        terraform show -json > ../ansible/terraform-outputs.json
-        cp ../ansible/terraform-outputs.json /tmp/terraform-outputs.json
+        terraform show -json > terraform-outputs.json
+        cp terraform-outputs.json /tmp/terraform-outputs.json
         ls -al
         ls -al ../ansible
         ls -al /tmp
@@ -142,7 +142,7 @@ jobs:
       run: |
         pwd
         ls -al ansible/
-        cat ansible/terraform-outputs.json
+        cat terraform/terraform-outputs.json
 
   # deployAnsible:
   #   needs: terraform

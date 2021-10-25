@@ -144,26 +144,26 @@ jobs:
         ls -al ansible/
         cat ansible/terraform-outputs.json
 
-  deployAnsible:
-    needs: terraform
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
+  # deployAnsible:
+  #   needs: terraform
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v1
 
     # - name: Download inventory.ini 
     #   uses: actions/download-artifact@v2
     #   with:
     #     name: terraform-outputs.json
 
-    - shell: bash
-      run: |
-        pwd
-        ls -al
-        ls -al ansible/
+    # - shell: bash
+    #   run: |
+    #     pwd
+    #     ls -al
+    #     ls -al ansible/
 #        cat terraform-outputs.json
 
-  #   - uses: ./.github/actions/ansible
-  #     with: 
-  #       key: ${{ secrets.SSH_PRIVATE_KEY }}
-  #       playbook: ./ansible/docker.yml
-  #       inventory: ./ansible/inventory.ini
+    - uses: ./.github/actions/ansible
+      with: 
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        playbook: ./ansible/docker.yml
+        inventory: ./ansible/inventory.ini

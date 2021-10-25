@@ -103,19 +103,12 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
-        PUBLIC_IP_TEMP=`terraform output instance_public_ip`
-        PUBLIC_IP=$( echo -e `sed -e 's/^"//' -e 's/"$//' <<< "$PUBLIC_IP_TEMP"` )
 
-        SERVER_NAME_TEMP=`terraform output server_name`
-        SERVER_NAME=$( echo -e `sed -e 's/^"//' -e 's/"$//' <<< "$SERVER_NAME_TEMP"`)
+        terraform show -json | tee terraform-outputs.json
+        cp terraform-outputs.json ../ansible/terraform-outputs.json
 
-        KEY_NAME_TEMP=`terraform output key_name`
-        KEY_NAME=$( echo -e `sed -e 's/^"//' -e 's/"$//' <<< "$KEY_NAME_TEMP"` )
-
-        echo "[servers]" > inventory.ini 
-        echo "${SERVER_NAME} ansible_host=${PUBLIC_IP} ansible_ssh_private_key_file=${KEY_NAME} ansible_ssh_user=ubuntu" >> inventory.ini
-        cat inventory.ini
-
+        cat terraform-outputs.json
+        
     # - name: Upload terraform-outputs.json
     #   uses: actions/upload-artifact@v2
     #   with:

@@ -103,12 +103,9 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
-
         terraform show -json | tee terraform-outputs.json
         cp terraform-outputs.json ../ansible/terraform-outputs.json
 
-        cat terraform-outputs.json
-        
     # - name: Upload terraform-outputs.json
     #   uses: actions/upload-artifact@v2
     #   with:
@@ -135,11 +132,11 @@ jobs:
     #   with:
     #     name: terraform-outputs.json
 
-    # - shell: bash
-    #   run: |
-    #     pwd
-    #     ls -al ansible/
-    #     cat terraform/inventory.ini
+    - shell: bash
+      run: |
+        pwd
+        ls -al ansible/
+        
 
   # deployAnsible:
   #   needs: terraform

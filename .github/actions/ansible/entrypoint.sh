@@ -30,7 +30,7 @@ cp ./ansible/ansible.cfg .
 # ls -al terraform/
 
 # cd terraform
-# ./create-inventory.sh
+bash ./terraform/create-inventory.sh
 # cd ..
 
 # ls -al 

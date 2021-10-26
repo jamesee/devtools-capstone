@@ -1,4 +1,4 @@
-name: CI to Docker Hub
+name: CI for Amongus-todo app to AWS EC2 via Dockerhub
 on:
   push:
     branches: [main]

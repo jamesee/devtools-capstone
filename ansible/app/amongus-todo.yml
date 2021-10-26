@@ -46,13 +46,20 @@
     #     state: present
     #   with_sequence: count={{ create_containers }}
 
+    - name: Remove docker 
+      ansible.builtin.shell: |
+        docker rm -f $(docker ps -aq)
+      args:
+        executable: /usr/bin/docker
+      delegate_to: localhost
+
     - name: Run docker container
       docker_container:
         name: "{{ default_container_name }}{{ item }}"
         image: "{{ default_container_image }}"
         state: started
         exposed_ports:
-        - "80"
+        - "808{{item}}"
         ports:
         - "808{{ item }}:3000"
         # volumes:

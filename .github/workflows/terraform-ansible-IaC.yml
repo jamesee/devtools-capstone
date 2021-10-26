@@ -113,5 +113,5 @@ jobs:
     - uses: ./.github/actions/ansible
       with: 
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        playbook: ./ansible/docker.yml
+        playbook: ./ansible/infra/docker.yml
         inventory: ./ansible/inventory.ini

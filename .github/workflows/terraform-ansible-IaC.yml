@@ -103,12 +103,12 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
-        terraform output -json ansible_inventory_file > ../ansible/terraform-outputs.json
+        terraform output -json ansible_inventory_file > ../ansible/terraform-outputs.txt
 
     - shell: bash
       run: |
         ls -al ./ansible
-        cat ansible/terraform-outputs.json
+        cat ansible/terraform-outputs.txt
         
     - uses: ./.github/actions/ansible
       with: 

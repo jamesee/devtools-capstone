@@ -35,12 +35,26 @@
     - name: Pull default Docker image
       docker_image:
         name: "{{ default_container_image }}"
+        tag : latest
         source: pull
 
-    - name: Create default containers
+    # - name: Create default containers
+    #   docker_container:
+    #     name: "{{ default_container_name }}{{ item }}"
+    #     image: "{{ default_container_image }}"
+    #     command: "{{ default_container_command }}"
+    #     state: present
+    #   with_sequence: count={{ create_containers }}
+
+    - name: Run docker container
       docker_container:
-        name: "{{ default_container_name }}{{ item }}"
+        name: "{{ default_container_name }}"
         image: "{{ default_container_image }}"
-        # command: "{{ default_container_command }}"
-        state: present
+        state: started
+        exposed_ports:
+        - "80"
+        ports:
+        - "80:3000"
+        # volumes:
+        # - /root/webpage/:/usr/local/apache2/htdocs/
       with_sequence: count={{ create_containers }}

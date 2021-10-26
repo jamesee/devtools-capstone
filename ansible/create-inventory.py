@@ -7,16 +7,18 @@ with open('./ansible/test.json') as f:
 
 print(data_test)
 
-with open('./ansible/terraform-outputs.txt') as f:
-  # data = json.load(f)
-  data = f.read()
-  dataJson = json.loads(data)
+with open('./ansible/terraform-outputs.json') as f:
+  data = json.load(f)
+  # data = f.read()
+  # dataJson = json.loads(data)
 
 # print(data["values"]["outputs"]["ansible_inventory_file"]["value"]["content"])
-print(dataJson)
+print(data)
+# print(dataJson)
 
 
 # inventory = data["values"]["outputs"]["ansible_inventory_file"]["value"]["content"]
 
 with open('./ansible/inventory.ini', 'w') as output_file:
-  output_file.write(dataJson["content"])
+  output_file.write(data["content"])
+  # output_file.write(dataJson["content"])

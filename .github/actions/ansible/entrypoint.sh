@@ -28,11 +28,11 @@ cp ./ansible/ansible.cfg .
 
 cat ./ansible/terraform-outputs.json
 
-cat ./ansible/test.json | echo -e $(jq '.content')  | tee inventory.ini
-$(cat ./ansible/terraform-outputs.json | echo -e $(jq '.content') ) | tee inventory.ini
+# cat ./ansible/test.json | echo -e $(jq '.content')  | tee inventory.ini
+# $(cat ./ansible/terraform-outputs.json | echo -e $(jq '.content') ) | tee inventory.ini
 # sed -e 's/^"//' -e 's/"$//' <<< $(cat ./ansible/terraform-outputs.json | echo -e $(jq '.content'))  | tee inventory.ini
 
-# python3 ./ansible/create-inventory.py
+python3 ./ansible/create-inventory.py
 cat ./ansible/inventory.ini 
 
 ansible-playbook "$INPUT_PLAYBOOK" -i "$INPUT_INVENTORY"

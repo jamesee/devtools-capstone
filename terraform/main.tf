@@ -13,7 +13,7 @@ resource "aws_security_group" "sg_22" {
     # cidr_blocks = ["${chomp(data.http.myipv4.body)}/32"]
   }
 
-    ingress {
+  ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -42,11 +42,11 @@ resource "aws_security_group" "sg_22" {
 # }
 
 resource "aws_instance" "devtoolsCapstone" {
-  ami                    = "ami-0d058fe428540cd89"
-  instance_type          = "t2.micro"
+  ami           = "ami-0d058fe428540cd89"
+  instance_type = "t2.micro"
 
   # key_name = "${aws_key_pair.ec2key.key_name}"
-  key_name = "james-sutd-ec2"
+  key_name               = "james-sutd-ec2"
   vpc_security_group_ids = ["${aws_security_group.sg_22.id}"]
 
   # provisioner "remote-exec" {

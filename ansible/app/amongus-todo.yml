@@ -2,7 +2,7 @@
 - hosts: all
   become: true
   vars:
-    create_containers: 1
+    create_containers: 3
     default_container_name: Amongus-Todo
     default_container_image: james1122/amongus-todo:latest
     default_container_command: sleep 1d

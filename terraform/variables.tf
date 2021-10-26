@@ -1,15 +1,15 @@
 variable "public_key_path" {
   description = "Public key path"
-  default = "~/.ssh/id_rsa.pub"
+  default     = "~/.ssh/id_rsa.pub"
 }
 
 variable "ssh_key_path" {
   description = "Private key path"
-  default = "~/.ssh/james-sutd-ec2.pem"
+  default     = "~/.ssh/james-sutd-ec2.pem"
 }
 
 variable "host_label" {
-    default = "devtools-capstone"
+  default = "devtools-capstone"
 }
 
 data "http" "myipv4" {

@@ -20,19 +20,19 @@ output "key_name" {
 
 ### The Ansible inventory file
 resource "local_file" "ansible_inventory_file" {
- content = templatefile("inventory.tmpl",
- {
-  server_name = "${var.host_label}"
-  public_ip = "${aws_instance.devtoolsCapstone.public_ip}",
-  instance_id = "${aws_instance.devtoolsCapstone.id}",
-  instance_key_name = "${var.ssh_key_path}",
- }
- )
- filename = "inventory.ini"
+  content = templatefile("inventory.tmpl",
+    {
+      server_name       = "${var.host_label}"
+      public_ip         = "${aws_instance.devtoolsCapstone.public_ip}",
+      instance_id       = "${aws_instance.devtoolsCapstone.id}",
+      instance_key_name = "${var.ssh_key_path}",
+    }
+  )
+  filename = "inventory.ini"
 }
 
 output "ansible_inventory_file" {
   description = "Ansbile Inventory File"
   value       = local_file.ansible_inventory_file
-  sensitive = true
+  sensitive   = true
 }

@@ -46,13 +46,13 @@
     #     state: present
     #   with_sequence: count={{ create_containers }}
 
-    - name: Remove docker 
-      ansible.builtin.shell: |
-        docker rm -f $(docker ps -aq)
-      args:
-        executable: /usr/bin/docker
-      delegate_to: localhost
+    - name: Remove Docker Containers
+      shell: |                    # Multiple commands in Ansible shell module
+          docker rm -f $(docker ps -aq)
+      args: 
+          executable: /bin/bash # Run ls in the Bash shell
 
+ 
     - name: Run docker container
       docker_container:
         name: "{{ default_container_name }}{{ item }}"

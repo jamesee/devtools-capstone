@@ -12,6 +12,21 @@ resource "aws_security_group" "sg_22" {
     # cidr_blocks = ["${local.myipv4}/32"]
     # cidr_blocks = ["${chomp(data.http.myipv4.body)}/32"]
   }
+
+    ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0

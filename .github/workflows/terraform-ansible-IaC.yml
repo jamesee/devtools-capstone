@@ -106,7 +106,10 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
-        # terraform output -json ansible_inventory_file | tee ../ansible/terraform-outputs.json
+        $data = $(terraform output -json ansible_inventory_file)
+        Get-Process | Tee-Object -Variable data
+        $data | Out-File -Path ../ansible/terraform-outputs.json -Encoding Utf8
+        # terraform output -json ansible_inventory_file | tee ../ansible/terraform-outputs.json -Encoding UTF-8
 
     # - shell: bash
     #   run: |

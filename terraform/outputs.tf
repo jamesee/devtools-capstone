@@ -9,12 +9,12 @@ output "instance_id" {
 }
 
 output "server_name" {
-  description = "ID of the EC2 instance"
+  description = "Hostname of the EC2 instance"
   value       = var.host_label
 }
 
 output "key_name" {
-  description = "ID of the EC2 instance"
+  description = "SSH Private Key Name"
   value       = var.ssh_key_path
 }
 

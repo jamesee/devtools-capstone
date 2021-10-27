@@ -1,4 +1,4 @@
-FROM python:3.8.12-alpine
+FROM node:14-alpine
 
 ENV ANSIBLE_VERSION=2.9.11
 ENV ANSIBLE_LINT_VERSION=4.2.0
@@ -13,6 +13,7 @@ RUN apk update \
 RUN pip3 install --upgrade pip \
   && pip3 install ansible==${ANSIBLE_VERSION} \
   && pip3 install ansible-lint==${ANSIBLE_LINT_VERSION}
+
 
 COPY ./entrypoint.sh /entrypoint.sh
 

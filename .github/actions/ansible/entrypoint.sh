@@ -26,14 +26,14 @@ chmod 400 "$SSHPATH/james-sutd-ec2.pem"
 
 cp ./ansible/ansible.cfg .
 
-cat ./ansible/terraform-outputs.json
+# cat ./ansible/terraform-outputs.json
 
 # cat ./ansible/test.json | echo -e $(jq '.content')  | tee inventory.ini
 # $(cat ./ansible/terraform-outputs.json | echo -e $(jq '.content') ) | tee inventory.ini
 # sed -e 's/^"//' -e 's/"$//' <<< $(cat ./ansible/terraform-outputs.json | echo -e $(jq '.content'))  | tee inventory.ini
-pwd
+# pwd
 # python3 ./ansible/create-inventory.py
-node ./ansible/create-inventory.js
+# node ./ansible/create-inventory.js
 
 cat ./ansible/inventory.ini 
 

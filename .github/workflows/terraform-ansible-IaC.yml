@@ -106,7 +106,7 @@ jobs:
       run: |
         cd terraform
         terraform apply -auto-approve
-        terraform output -json ansible_inventory_file | tee ../ansible/terraform-outputs.json
+        # terraform output -json ansible_inventory_file | tee ../ansible/terraform-outputs.json
 
     - shell: bash
       run: |

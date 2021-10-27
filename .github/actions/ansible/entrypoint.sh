@@ -32,7 +32,7 @@ cp ./ansible/ansible.cfg .
 # $(cat ./ansible/terraform-outputs.json | echo -e $(jq '.content') ) | tee inventory.ini
 # sed -e 's/^"//' -e 's/"$//' <<< $(cat ./ansible/terraform-outputs.json | echo -e $(jq '.content'))  | tee inventory.ini
 # pwd
-python3 ./ansible/create-inventory.py
+# python3 ./ansible/create-inventory.py
 # node ./ansible/create-inventory.js
 
 cat ./ansible/inventory.ini 

@@ -108,10 +108,10 @@ jobs:
         terraform apply -auto-approve
         # terraform output -json ansible_inventory_file | tee ../ansible/terraform-outputs.json
 
-    - shell: bash
-      run: |
-        ls -al ./ansible
-        cat ansible/terraform-outputs.json
+    # - shell: bash
+    #   run: |
+    #     ls -al ./ansible
+    #     cat ansible/terraform-outputs.json
         
     - uses: ./.github/actions/ansible
       with: 

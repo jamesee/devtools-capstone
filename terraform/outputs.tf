@@ -31,8 +31,8 @@ resource "local_file" "ansible_inventory_file" {
   filename = "../ansible/inventory.ini"
 }
 
-output "ansible_inventory_file" {
-  description = "Ansbile Inventory File"
-  value       = local_file.ansible_inventory_file
-  sensitive   = true
-}
+# output "ansible_inventory_file" {
+#   description = "Ansbile Inventory File"
+#   value       = local_file.ansible_inventory_file
+#   sensitive   = true
+# }

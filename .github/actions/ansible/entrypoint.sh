@@ -31,7 +31,7 @@ cat ./ansible/terraform-outputs.json
 # cat ./ansible/test.json | echo -e $(jq '.content')  | tee inventory.ini
 # $(cat ./ansible/terraform-outputs.json | echo -e $(jq '.content') ) | tee inventory.ini
 # sed -e 's/^"//' -e 's/"$//' <<< $(cat ./ansible/terraform-outputs.json | echo -e $(jq '.content'))  | tee inventory.ini
-
+pwd
 python3 ./ansible/create-inventory.py
 cat ./ansible/inventory.ini 
 

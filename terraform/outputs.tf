@@ -28,7 +28,7 @@ resource "local_file" "ansible_inventory_file" {
       instance_key_name = "${var.ssh_key_path}",
     }
   )
-  filename = "inventory.ini"
+  filename = "../ansible/inventory.ini"
 }
 
 output "ansible_inventory_file" {

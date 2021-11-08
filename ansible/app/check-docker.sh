@@ -1,10 +1,9 @@
 #!/bin/bash
+# if [ "$(docker ps -aq -f status=exited -f name=$1*)" ]; then
+#     docker rm -f $(docker ps -q -f name="$1*") \
+# fi
 
-if [ ! "$(docker ps -q -f name=<name>)" ]; then
-    if [ "$(docker ps -aq -f status=exited -f name=<name>)" ]; then
-        # cleanup
-        docker rm <name>
-    fi
-    # run your container
-    docker run -d --name <name> my-docker-image
+if [ "$(docker ps -q -f name={{ default_container_name }}*" ]; then 
+    echo "$(docker ps -q -f name={{ default_container_name }}*"
+    docker rm -f $(docker ps -q -f name="{{ default_container_name }}*") 
 fi

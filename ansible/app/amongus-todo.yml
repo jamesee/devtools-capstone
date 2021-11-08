@@ -54,9 +54,7 @@
 
     - name: Remove Docker Containers
       shell: |                    # Multiple commands in Ansible shell module
-          if [ "$(docker ps -q -f name={{ default_container_name }}*" ]; then \
-            docker rm -f $(docker ps -q -f name="{{ default_container_name }}*") \
-          fi
+        source ./ansible/app/check-docker.sh 
       args: 
           executable: /bin/bash # Run ls in the Bash shell
 

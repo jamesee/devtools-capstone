@@ -4,6 +4,10 @@ const router = jsonServer.router(process.env.DB || 'db.json');
 const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
+const appid = process.env.APPID;
+
+server.get("/appid", (req,res) => 
+res.send(`appid: ${appid} home page: says hello!`))
 
 // Add custom routes before JSON Server router
 server.get('/echo', (req, res) => {

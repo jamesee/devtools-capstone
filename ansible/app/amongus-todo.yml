@@ -46,11 +46,11 @@
     #     state: present
     #   with_sequence: count={{ create_containers }}
 
-    - name: Remove Docker Containers
-      shell: |                    # Multiple commands in Ansible shell module
-          docker rm -f $(docker ps -aq)
-      args: 
-          executable: /bin/bash # Run ls in the Bash shell
+    # - name: Remove Docker Containers
+    #   shell: |                    # Multiple commands in Ansible shell module
+    #       docker rm -f $(docker ps -aq)
+    #   args: 
+    #       executable: /bin/bash # Run ls in the Bash shell
 
  
     - name: Run docker container

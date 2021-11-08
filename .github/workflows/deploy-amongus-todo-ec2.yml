@@ -112,7 +112,7 @@ jobs:
   #         usedocker: true
 
   deploy-app:
-    # needs: docker-push
+    needs: docker-push
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1

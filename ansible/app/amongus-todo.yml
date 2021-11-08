@@ -52,7 +52,15 @@
     #   args: 
     #       executable: /bin/bash # Run ls in the Bash shell
 
- 
+    - name: Remove Docker Containers
+      shell: |                    # Multiple commands in Ansible shell module
+          if [ "$(docker ps -q -f name={{ default_container_name }}{{ item }})" ]; then \
+            docker rm -f $(docker ps -a | grep "{{ default_container_name }}{{ item }}") \
+          fi
+      args: 
+          executable: /bin/bash # Run ls in the Bash shell
+      with_sequence: count={{ create_containers }}
+
     - name: Run docker container
       docker_container:
         name: "{{ default_container_name }}{{ item }}"

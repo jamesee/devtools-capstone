@@ -52,11 +52,12 @@
     #   args: 
     #       executable: /bin/bash # Run ls in the Bash shell
 
-    - name: Remove Docker Containers
-      shell: |                    # Multiple commands in Ansible shell module
-        if [ "$(docker ps -q -f name={{ default_container_name }}*" ]; then docker rm -f $( docker ps -q -f name={{ default_container_name }}* ) fi
-      args: 
-        executable: /bin/bash # Run ls in the Bash shell
+    - name: Stop all containers running nginx image
+      docker_container:
+        name: '{{ item.Names[0] | regex_replace("^/", "") }}'
+        state: stopped
+      when: item.Image == "{{ default_container_name }}"
+      loop: '{{ docker_info.containers }}'
 
     - name: Run docker container
       docker_container:

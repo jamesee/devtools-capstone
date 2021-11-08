@@ -52,12 +52,16 @@
     #   args: 
     #       executable: /bin/bash # Run ls in the Bash shell
 
-    - name: Stop all containers running nginx image
-      docker_container:
-        name: '{{ item.Names[0] | regex_replace("^/", "") }}'
-        state: stopped
-      when: item.Image == "{{ default_container_name }}*"
-      loop: '{{ docker_info.containers }}'
+    # - name: Stop all containers running nginx image
+    #   docker_container:
+    #     name: '{{ item.Names[0] | regex_replace("^/", "") }}'
+    #     state: stopped
+    #   when: item.Image == "{{ default_container_name }}*"
+    #   loop: '{{ docker_info.containers }}'
+
+    - name: remove all docker containers
+      shell: docker rm -f $(docker ps -a -q)
+      ignore_errors: true
 
     - name: Run docker container
       docker_container:

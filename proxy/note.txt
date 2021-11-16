@@ -1,0 +1,17 @@
+
+sudo apt install haproxy
+sudo apt install letsencrypt
+
+sudo cp haproxy.cfg /etc/haproxy/
+
+haproxy -f /etc/haproxy/haproxy.cfg -c
+
+sudo systemctl restart haproxy.service
+
+sudo systemctl stop haproxy.service
+sudo certbot certonly --standalone
+
+sudo cat /etc/letsencrypt/live/jamesee-sutd.ddns.net/fullchain.pem /etc/letsencrypt/live/jamesee-sutd.ddns.net/privkey.pem | sudo tee haproxy.pem
+
+# remember to uncomment redirect line in /etc/haproxy/haproxy.cfg
+# http-request redirect scheme https unless { ssl_fc }

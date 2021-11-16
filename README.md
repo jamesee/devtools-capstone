@@ -148,6 +148,6 @@ Also, as I could not find suitable ansible github actions at the marketplace, I 
 
 Manually set up a reverse-proxy server using HAProxy with loadbalancing and https using letsencrypt certificate.
 
-Please see https://jamesee-stud.ddns.net
+Please see https://jamesee-sutd.ddns.net
 
 ![devtools-capstone deployment](docs/img/devtools-capstone-deploy.png)

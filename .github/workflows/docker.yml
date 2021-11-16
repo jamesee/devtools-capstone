@@ -65,7 +65,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: ${{ env.TEST_TAG }}
-          args: --severity-threshold=medium
+          args: --severity-threshold=high
           
   docker-push:
     needs: docker-build-snyk

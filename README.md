@@ -200,7 +200,7 @@ Managed to use terraform to setup the ec2 at AWS and use [ansible docker.yml](an
 
 The terraform HCL script automatically output the [inventory.ini](ansilbe/inventory.ini) file for ansbile consumption.
 
-Also, as I could not find suitable ansible github actions at the marketplace, I wrote my ansible github actions. Please see [.github/actions](.github/actions) folder.
+Also, as I could not find suitable ansible github actions at the marketplace, I wrote my ansible github actions. Please see [.github/actions/ansible](.github/actions/ansible) folder.
 
 # Bonus Requirement
 

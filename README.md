@@ -11,6 +11,9 @@
 - Automated tests
 - Deployment to the cloud provider
 
+
+Whenever there is a push to main branch, it will do the integration test of the app and the synk vulnerability test. Upon success, it will build the docker image james1122/amongus-todo:latest (based on the Dockfile in the project root), does the docker synk test and then push to docker hub james1122 registry. After that, I use ansible ([based on the ansible/app/amongus-todo.yml](ansible/app/amongus-todo.yml)) to redeploy the docker app at the AWS EC2 server.
+
 ```yaml
 # .github/workflows/deploy-amongus-todo-ec2.yml
 name: CI for Amongus-todo app to AWS EC2 via Dockerhub
@@ -126,16 +129,76 @@ jobs:
         inventory: ./ansible/inventory.ini
 ```
 
+```yaml
+# ansible/app/amongus-todo.yml
+---
+- hosts: all
+  become: true
+  vars:
+    create_containers: 3
+    default_container_name: Amongus-Todo
+    default_container_image: james1122/amongus-todo:latest
+    default_container_command: sleep 1d
+
+  tasks:
+    - name: Install aptitude using apt
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+    - name: Install required system packages
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu xenial stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt: update_cache=yes name=docker-ce state=latest
+
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
+
+    - name: Pull default Docker image
+      docker_image:
+        name: "{{ default_container_image }}"
+        tag : latest
+        source: pull
+
+    - name: remove all docker containers
+      shell: docker rm -f $(docker ps -a -q)
+      ignore_errors: true
+
+    - name: Run docker container
+      docker_container:
+        name: "{{ default_container_name }}{{ item }}"
+        image: "{{ default_container_image }}"
+        state: started
+        exposed_ports:
+        - "808{{item}}"
+        ports:
+        - "808{{ item }}:3000"
+        # volumes:
+        # - /root/webpage/:/usr/local/apache2/htdocs/
+      with_sequence: count={{ create_containers }}
+```
+
 # Requirement #2 
 
 - The VM/server and other infrastructural resources must be created using Terraform
 - Infra creation can be done by invoking Terraform commands locally
 
-Please see the hcl scripts in [terraform](terraform) folders.
+Please see the hcl scripts in [terraform](terraform) folders. 
 
-Managed to use terraform to setup the ec2 at AWS and use ansible scripts to install docker engine after it has been set up.
+Managed to use terraform to setup the ec2 at AWS and use [ansible docker.yml](ansible/infra/docker.yml) to install docker engine after it has been set up.
 
-The terraform HCL script automatically output the inventory.ini file for ansbile consumption.
+The terraform HCL script automatically output the [inventory.ini](ansilbe/inventory.ini) file for ansbile consumption.
 
 Also, as I could not find suitable ansible github actions at the marketplace, I wrote my ansible github actions. Please see [.github/actions](.github/actions) folder.
 

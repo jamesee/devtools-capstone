@@ -48,7 +48,6 @@ on:
   push:
     paths:
     - terraform/**
-  pull_request:
 
 jobs:
   terraform:

@@ -194,11 +194,11 @@ jobs:
 - The VM/server and other infrastructural resources must be created using Terraform
 - Infra creation can be done by invoking Terraform commands locally
 
-Please see the hcl scripts in [terraform](terraform) folders. 
+Please see the HCL scripts in [terraform](terraform) folders. 
 
-Managed to use terraform to setup the ec2 at AWS and use [ansible docker.yml](ansible/infra/docker.yml) to install docker engine after it has been set up.
+Managed to use terraform (with backend at terraform cloud) to setup the ec2 at AWS and use [ansible/infra/docker.yml](ansible/infra/docker.yml) to install docker engine after it has been set up.
 
-The terraform HCL script automatically output the [inventory.ini](ansilbe/inventory.ini) file for ansbile consumption.
+The terraform HCL script automatically output the [ansible/inventory.ini](ansible/inventory.ini) file for ansbile consumption.
 
 Also, as I could not find suitable ansible github actions at the marketplace, I wrote my ansible github actions. Please see [.github/actions/ansible](.github/actions/ansible) folder.
 
